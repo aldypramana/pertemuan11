@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membaca Data Json 01</title>
+</head>
+<body>
+<div id="TampilData"></div>
+
+    <script>
+        const jsHTTP = new XMLHttpRequest();
+        jsHTTP.open("GET","http://localhost/pwu/sesi11/latihan01.php");
+        jsHTTP.send();
+
+        jsHTTP.onload = function(){
+            const isi = JSON.parse(this.responseText);
+            console.log(isi);
+          let tx = "<h3>List Data</h3>";
+          tx += "<table><tr><th>#</th><th>Nama</th><th>Alamat</th><th>Tanggal Lahir</th><th>Jenis Kelamin</th><th>No Handphone</th></tr>";
+            let no = 1;
+            for(let i=0; i<isi.length;i++){
+                tx +="<tr>";
+                    tx +="   <td>"+no+"</td>";
+                    tx +="   <td>"+isi[i].nama+"</td>";
+                    tx +="   <td>"+isi[i].alamat+"</td>";
+                    tx +="   <td>"+isi[i].tgl_lahir+"</td>";
+                    tx +="   <td>"+isi[i].jenis_kelamin+"</td>";
+                    tx +="   <td>"+isi[i].no_hp+"</td>";
+                    tx +="</tr>"
+                    no++;
+            }
+            tx += "</table>"
+            document.getElementById("TampilData").innerHTML = tx;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membaca Data Json 01</title>
+</head>
+<body>
+<hr>
+<b>
+        Nama : <span id="txNAMA"></span><br>
+        Alamat : <div id="txALAMAT"></div><br>
+        Tanggal Lahir : <input type="date" id="txTGLLAHIR"><br>
+        Jenis Kelamin : <span id="txJKELAMIN"></span><br>
+        No Handphone : <span id="txNOHP"></span>
+</b>
+<hr>
+    <script>
+        const jsHTTP = new XMLHttpRequest();
+        jsHTTP.open("GET","http://localhost/pwu/sesi11/latihan01.php");
+        jsHTTP.send();
+
+        jsHTTP.onload = function(){
+            const dt = JSON.parse(this.responseText);
+            console.log(dt);
+            document.getElementById("txNAMA").innerHTML = dt[0].nama;
+            document.getElementById("txALAMAT").innerHTML = dt[0].alamat;
+            document.getElementById("txTGLLAHIR").value = dt[0].tgl_lahir;
+            document.getElementById("txJKELAMIN").innerHTML = dt[0].jenis_kelamin;
+            document.getElementById("txNOHP").innerHTML = dt[0].no_hp;
+
+            
+        }
+    </script>
+
+</body>
+</html>
